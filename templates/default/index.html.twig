@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="container">
+        <input id="tts-input" type="text" name="text-to-speech">
+        <button id="tts-button">Сказать</button>
+    </div>
+
+    <div class="example-wrapper">
+        <audio controls src="output.mp3"></audio>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $("#tts-button").click(function () {
+            $.ajax({
+                url: '{{ path('default_tts') }}',
+                method: 'POST',
+                data: $("#tts-input").serialize(),
+                success: function (response) {
+                    // document.location.reload();
+                }
+            });
+        });
+    </script>
+{% endblock %}

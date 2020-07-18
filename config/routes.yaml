@@ -1,3 +1,7 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+
+default_tts:
+    path: /text-to-speech
+    controller: App\Controller\DefaultController::tts
